@@ -39,10 +39,10 @@ print(best_list)
 
 Python 3.6 Standard Library
 
-list 
-tuple
+list() -- []
+tuple()-- ()
 set
-dict
+dict() -- {}
 print()
 len()
 range()
@@ -163,3 +163,76 @@ welcome_map = map(welcome_guest, guest_arrivals)
 
 guest_welcomes = [*welcome_map]
 print(*guest_welcomes, sep='\n')
+
+
+=============================================================================================================================
+
+Magic commands -- enhancements on top of normal python syntax
+
+%lsmagic -- list all magic commands
+magic commands begin with %
+
+%timeit -r2 -n10 rand_nums = np.random.rand(1000) # 2 runs, 10 loops 
+
+
+%timeit -- line magic mode 
+%%timeit -- cell magic mode
+
+
+times = %timeit -o rand_nums = np.random.rand(1000) # saves output to times 
+times.timings 
+times.best
+times.worst 
+times.average
+
+
+s   second      10-0
+ms  millisecond 10-3
+us  microsecond 10-6
+ns  nanosecond  10-9
+
+unpacking is faster than list comprehension in terms of runtimes 
+
+Using python's literal syntax to define a data structure can speed up runtime instead of using formal syntax
+
+Code Profiling 
+    Detailed stats on frequency and duration of function calls
+    line by line analysis
+    line_profiler package is used
+
+    pip instal line_profiler 
+
+%load_ext line_profiler # loads package into ipython console
+
+%lprun -f function_name function_name(arguments) # -f to mention function_name, output provides a table 
+
+
+Profiling a function allows you to dig deeper into the function's source code and potentially spot bottlenecks.
+
+sys.getsizeof(variable_name) # gets you the memory size of the object 
+
+memory_profiler package for detailed stats on memory consumption 
+ 
+%load_ext memory_profiler
+%mprun -f function_name function_name(arguments) 
+
+functions must be defined in a file and imported when using memory_profiler
+
+memory_profiler inspects memory by querying the operating system and hence results may differ between platforms and runs 
+
+
+BMI -- Body Mass Index = Mass (kg) / Height^2  (m^2)
+
+----------------------------------------------------------------------------------------------------------------------
+# Use get_publisher_heroes() to gather Star Wars heroes
+star_wars_heroes = get_publisher_heroes(heroes, publishers, 'George Lucas')
+
+print(star_wars_heroes)
+print(type(star_wars_heroes))
+
+# Use get_publisher_heroes_np() to gather Star Wars heroes
+star_wars_heroes_np = get_publisher_heroes_np(heroes, publishers, 'George Lucas')
+
+print(star_wars_heroes_np)
+print(type(star_wars_heroes_np))
+
